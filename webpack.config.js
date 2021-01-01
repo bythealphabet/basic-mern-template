@@ -33,7 +33,7 @@ function webpackConfig({ mode = "production", name = "server", presets = [] }) {
 function modeConfig(mode, name) {
   return name === "server"
     ? require(`./build-utils/webpack.config.server.js`)(name)
-    : require(`./build-utils/webpack.config.client.${mode}`)(mode, name);
+    : require(`./build-utils/webpack.config.${mode}`)(mode, name);
 }
 
 module.exports = webpackConfig;
