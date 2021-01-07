@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -r dist ",
     "dev": "nodemon",
-    "build": "webpack --env mode=production --env name=browser --env NODE_ENV=production && webpack --env mode=production --env name=server",
+    "dev:client": "webpack --env mode=development --env name=browser",
+    "build": "webpack --env mode=production --env name=browser && webpack --env mode=production --env name=server",
     "start": "NODE_ENV=production node ./dist/server.generated.js"
   },
   "repository": {

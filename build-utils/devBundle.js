@@ -13,6 +13,9 @@ function compile(app) {
       return {
         devMiddleware: webpackMiddleware(compiler, {
           publicPath,
+          writeToDisk: (filePath) => {
+            return /dist\//.test(filePath);
+          },
         }),
         compiler,
       };
@@ -25,4 +28,4 @@ function compile(app) {
     .catch((error) => console.log("error in devBundle", error));
 }
 
-export default compile;
+export default { compile };

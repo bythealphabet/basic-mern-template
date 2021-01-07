@@ -1,14 +1,13 @@
 const path = require("path");
 const webpack = require("webpack");
-const nodeExternals = require("webpack-node-externals");
 const CURRENT_WORKING_DIR = process.cwd();
 
-function webpackServer(name) {
+function webpackDevelopment(name) {
   return {
     name,
     devtool: "eval-source-map",
     entry: [
-      "webpack-hot-middleware/client?reload=true",
+      `webpack-hot-middleware/client?name=${name}`,
       path.join(CURRENT_WORKING_DIR, "client/main.js"),
     ],
     output: {
@@ -16,16 +15,8 @@ function webpackServer(name) {
       filename: "bundle.js",
       publicPath: "/dist/",
     },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
-    ],
-    resolve: {
-      alias: {
-        "react-dom": "@hot-loader/react-dom",
-      },
-    },
+    plugins: [new webpack.HotModuleReplacementPlugin()],
   };
 }
 
-module.exports = webpackServer;
+module.exports = webpackDevelopment;
